@@ -1,3 +1,89 @@
+# <span style="color:gold"> react-router-dom </span>
+
+- 路由機制
+
+## 安裝 React-router-dom
+
+```json
+npm install react-router-dom
+```
+
+
+<br>
+
+# <span style="color:gold"> Json - Server </span>
+
+- 虛擬資料庫
+
+## 安裝 Json - Server
+
+```json
+npm install json-server
+```
+
+## 啟動 Json - Server 服務
+
+```json
+json-server db.json --port 3001
+```
+
+<br>
+
+
+# <span style="color:gold"> Concurrently </span>
+
+- 此模組是讓指令能夠同時啟動的
+****
+## 安裝 concurrently
+
+```json
+npm install -g concurrently
+```
+
+## 使用 concurrently
+
+- 開啟 package.json 修改 scripts 內的 start  ( 依據個人想起用多服務的指令，位置有所不同 )
+- 使用 "concurrently  \"指令1\"  \"指令2\"" 格式
+
+```
+"start": "concurrently \"react-scripts start \" \"json-server json_server/db.json --port 3003\""
+```
+
+<br>
+
+# <span style="color:gold"> React-Material-UI </span>
+
+## 安裝 material-ui
+```
+npm install @material-ui/core
+```
+
+## Roboto 字體
+Material-UI 有使用 Roboto 字體，因此，官方建議載入此字體
+
+▼ public / index.html
+```
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+```
+
+## Font Icons 字體圖標
+若您想使用 Icon 组件，前提是須要安裝 Material icons 的字體。 
+
+▼ public / index.html
+```
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
+## SVG 图标
+在 icons 範例中，官方使用 SVG Material icons。若想使用這個圖標，就必须安裝@material-ui/icons
+
+### 使用 npm 安裝 material-ui
+```
+npm install @material-ui/icons
+```
+
+---
+# <span style="color:gold">REACT 官方 ReadMe<span>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
