@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,14 +28,9 @@ const styles = theme => ({
     },
 });
 
-class HeaderComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
+class Header extends Component {
     render() {
-        const { classes } = this.props;
-        const { sections, title } = this.props;
+        const { classes, sections, title } = this.props;
         return (
             <div>
                 <Toolbar className={classes.toolbar}>
@@ -77,4 +71,4 @@ class HeaderComponent extends Component {
     }
 }
 
-export default withStyles(styles, { withTheme: true })(HeaderComponent);
+export default withStyles(styles, { withTheme: true })(Header);
