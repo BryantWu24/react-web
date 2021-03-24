@@ -48,7 +48,7 @@ class Header extends Component {
                     <IconButton>
                         <SearchIcon />
                     </IconButton>
-                    <Button variant="outlined" size="small" color="inherit">
+                    <Button variant="outlined" size="small" color="inherit" >
                         Sign up
                     </Button>
                 </Toolbar>

@@ -5,7 +5,6 @@ import MainFeaturedPost from '../../component/MainFeaturedPost'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -16,6 +15,7 @@ import Footer from './Footer'
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
+import axios from '../../core/axios';
 
 const styles = (theme) => ({
     mainGrid: {
@@ -26,8 +26,24 @@ const styles = (theme) => ({
 class HomePage extends Component {
     constructor(props) {
         super(props)
-
-        this.state = { md: [] }
+        this.state = {
+            md: [],
+            mainFeaturedPost: {},
+            featuredPost: [{
+                "title": " ",
+                "date": "",
+                "description": "",
+                "image": "",
+                "imageText": ""
+            },
+            {
+                "title": "",
+                "date": "",
+                "description": "",
+                "image": "",
+                "imageText": ""
+            }]
+        }
     }
 
     componentWillMount() {
@@ -52,7 +68,29 @@ class HomePage extends Component {
                 mdAry.push(md)
                 this.setState({ md: mdAry })
             });
+        this.getMainFeaturedPost();
+        this.getFeaturedPost();
     }
+
+    getMainFeaturedPost = async () => {
+        try {
+            const Data = await axios.get("/mainFeaturedPost");
+            this.setState({ mainFeaturedPost: Data.data })
+        }
+        catch (error) {
+            alert("GET Error!!");
+        }
+    };
+
+    getFeaturedPost = async () => {
+        try {
+            const Data = await axios.get("/featuredPost");
+            this.setState({ featuredPost: Data.data })
+        } catch (error) {
+            alert("error", error);
+        }
+    }
+
     render() {
         const sections = [
             { title: 'Technology', url: '#' },
@@ -60,33 +98,6 @@ class HomePage extends Component {
             { title: 'Culture', url: '#' },
             { title: 'Business', url: '#' },
             { title: 'Politics', url: '#' },
-        ];
-        const mainFeaturedPost = {
-            title: 'Title of a longer featured blog post',
-            description:
-                "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-            image: 'https://source.unsplash.com/random',
-            imgText: 'main image description',
-            linkText: 'Continue reading…',
-        };
-
-        const featuredPosts = [
-            {
-                title: 'Featured post',
-                date: 'Nov 12',
-                description:
-                    'This is a wider card with supporting text below as a natural lead-in to additional content.',
-                image: 'https://source.unsplash.com/random',
-                imageText: 'Image Text',
-            },
-            {
-                title: 'Post title',
-                date: 'Nov 11',
-                description:
-                    'This is a wider card with supporting text below as a natural lead-in to additional content.',
-                image: 'https://source.unsplash.com/random',
-                imageText: 'Image Text',
-            },
         ];
 
         const sidebar = {
@@ -121,11 +132,13 @@ class HomePage extends Component {
                     <Header title="Blog" sections={sections} />
 
                     <main>
-                        <MainFeaturedPost post={mainFeaturedPost} />
+                        <MainFeaturedPost post={this.state.mainFeaturedPost} />
                         <Grid container spacing={4}>
-                            {featuredPosts.map((post) => (
-                                <FeaturedPost key={post.title} post={post} />
-                            ))}
+                            {
+                                this.state.featuredPost.map((post) => (
+                                    <FeaturedPost key={post.title} post={post} />
+                                ))
+                            }
                         </Grid>
                         <Grid container spacing={5} className={classes.mainGrid}>
                             {
