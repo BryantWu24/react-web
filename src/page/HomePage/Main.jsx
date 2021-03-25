@@ -15,7 +15,6 @@ const styles = theme => ({
 class Main extends Component {
     render() {
         const { posts, title, classes } = this.props;
-        console.log('console.log(post);', posts);
         return (
             <Grid item xs={12} md={8}>
                 <Typography variant="h6" gutterBottom>

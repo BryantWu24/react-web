@@ -49,7 +49,7 @@
         },
         {
             "id": "03",
-            "title": "Post title",
+            "title": "Post title2",
             "date": "Nov 11",
             "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
             "image": "https://source.unsplash.com/random",
@@ -57,7 +57,7 @@
         },
         {
             "id": "04",
-            "title": "Post title",
+            "title": "Post title3",
             "date": "Nov 11",
             "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
             "image": "https://source.unsplash.com/random",

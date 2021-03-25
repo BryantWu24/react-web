@@ -30,14 +30,14 @@ class HomePage extends Component {
             md: [],
             mainFeaturedPost: {},
             featuredPost: [{
-                "title": " ",
+                "title": "Loading...",
                 "date": "",
                 "description": "",
                 "image": "",
                 "imageText": ""
             },
             {
-                "title": "",
+                "title": "Loading....",
                 "date": "",
                 "description": "",
                 "image": "",
