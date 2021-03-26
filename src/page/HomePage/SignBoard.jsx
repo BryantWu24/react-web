@@ -65,7 +65,13 @@ class SignBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            signType: this.props.signType
+            signType: this.props.signType,
+            signIn_account: '',
+            signIn_password: '',
+            signUp_account: '',
+            signUp_password: '',
+            signUp_userName: '',
+            signUp_email: ''
         }
     }
 
@@ -77,33 +83,47 @@ class SignBoard extends Component {
     }
 
     signUp = async () => {
-        const { account, password, userName, email } = this.state
-        if (account && password && userName && email) {
+        const { signUp_account, signUp_password, signUp_userName, signUp_email } = this.state
+        if (signUp_account && signUp_password && signUp_userName && signUp_email) {
             const Data = await axios.post("/user",
                 {
-                    "account": account,
-                    "password": password,
-                    "name": userName,
-                    "email": email
+                    "account": signUp_account,
+                    "password": signUp_password,
+                    "name": signUp_userName,
+                    "email": signUp_email
                 });
-            alert(Data.data);
+            if (Data.data.length === 0)
+                alert('SignUp Fail.');
+            else {
+                this.setState({
+                    signType: 'signIn',
+                    signUp_account: '',
+                    signUp_password: '',
+                    signUp_userName: '',
+                    signUp_email: ''
+                });
+            }
         }
-
-
         else
             alert('Fail Sign Up.')
     }
 
     signIn = async () => {
-        const { account, password } = this.state
+        const { signIn_account, signIn_password } = this.state
 
         try {
-            if (account && password) {
-                const Data = await axios.get("/user?account=" + account + "&password=" + password);
+            if (signIn_account && signIn_password) {
+                const Data = await axios.get("/user?account=" + signIn_account + "&password=" + signIn_password);
                 if (Data.data.length === 0)
                     alert('SignIn Fail.');
-                else
+                else {
+                    this.setState({
+                        signIn_account: '',
+                        signIn_password: '',
+                    });
+
                     alert('SignIn Success.');
+                }
             }
             else
                 alert('AC/PWD is Required')
@@ -137,24 +157,26 @@ class SignBoard extends Component {
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="account"
+                                        id="signIn_account"
                                         label="Account"
-                                        name="account"
+                                        name="signIn_account"
                                         autoComplete="account"
                                         autoFocus
-                                        onChange={event => this.setState({ account: event.target.value })}
+                                        value={this.state.signIn_account}
+                                        onChange={event => this.setState({ signIn_account: event.target.value })}
                                     />
                                     <TextField
                                         variant="outlined"
                                         margin="normal"
                                         required
                                         fullWidth
-                                        name="password"
+                                        name="signIn_password"
                                         label="Password"
                                         type="password"
-                                        id="password"
+                                        id="signIn_password"
                                         autoComplete="current-password"
-                                        onChange={event => this.setState({ password: event.target.value })}
+                                        value={this.state.signIn_password}
+                                        onChange={event => this.setState({ signIn_password: event.target.value })}
                                     />
                                     {/* <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
@@ -200,7 +222,8 @@ class SignBoard extends Component {
                                         name="userName"
                                         autoComplete="userName"
                                         autoFocus
-                                        onChange={event => this.setState({ userName: event.target.value })}
+                                        value={this.state.signUp_userName}
+                                        onChange={event => this.setState({ signUp_userName: event.target.value })}
                                     />
                                     <TextField
                                         variant="outlined"
@@ -212,7 +235,8 @@ class SignBoard extends Component {
                                         name="account"
                                         autoComplete="account"
                                         autoFocus
-                                        onChange={event => this.setState({ account: event.target.value })}
+                                        value={this.state.signUp_account}
+                                        onChange={event => this.setState({ signUp_account: event.target.value })}
                                     />
                                     <TextField
                                         variant="outlined"
@@ -224,7 +248,8 @@ class SignBoard extends Component {
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
-                                        onChange={event => this.setState({ email: event.target.value })}
+                                        value={this.state.signUp_email}
+                                        onChange={event => this.setState({ signUp_email: event.target.value })}
                                     />
                                     <TextField
                                         variant="outlined"
@@ -236,7 +261,8 @@ class SignBoard extends Component {
                                         type="password"
                                         id="password"
                                         autoComplete="current-password"
-                                        onChange={event => this.setState({ password: event.target.value })}
+                                        value={this.state.signUp_password}
+                                        onChange={event => this.setState({ signUp_password: event.target.value })}
                                     />
                                     <Button
                                         fullWidth

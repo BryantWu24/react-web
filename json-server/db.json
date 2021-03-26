@@ -1,82 +1,82 @@
 {
-  "user": [
-    {
-      "id": 1,
-      "account": "admin",
-      "password": "111111",
-      "name": "Bryant",
-      "email": "a@A.com"
+    "user": [
+        {
+            "id": 1,
+            "account": "admin",
+            "password": "111111",
+            "name": "Bryant",
+            "email": "a@A.com"
+        },
+        {
+            "id": 2,
+            "account": "admin2",
+            "password": "111111",
+            "name": "Bryant2",
+            "email": "a@A.com2"
+        },
+        {
+            "id": 5,
+            "account": "admin5",
+            "password": "111111",
+            "name": "Bryant5",
+            "email": "a@A.com"
+        },
+        {
+            "account": "admin6",
+            "password": "111111",
+            "name": "Bryant6",
+            "email": "a@A.com",
+            "id": 6
+        },
+        {
+            "account": "aa",
+            "password": "aa",
+            "name": "TEST",
+            "email": "aa@aa",
+            "id": 7
+        }
+    ],
+    "mainFeaturedPost": {
+        "title": "Hello World",
+        "description": "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+        "image": "https://source.unsplash.com/random",
+        "imgText": "main image description",
+        "linkText": "Continue reading…"
     },
-    {
-      "id": 2,
-      "account": "admin2",
-      "password": "111111",
-      "name": "Bryant2",
-      "email": "a@A.com2"
-    },
-    {
-      "id": 5,
-      "account": "admin5",
-      "password": "111111",
-      "name": "Bryant5",
-      "email": "a@A.com"
-    },
-    {
-      "account": "admin6",
-      "password": "111111",
-      "name": "Bryant6",
-      "email": "a@A.com",
-      "id": 6
-    },
-    {
-      "account": "aa",
-      "password": "aa",
-      "name": "TEST",
-      "email": "aa@aa",
-      "id": 7
-    }
-  ],
-  "mainFeaturedPost": {
-    "title": "Hello World",
-    "description": "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    "image": "https://source.unsplash.com/random",
-    "imgText": "main image description",
-    "linkText": "Continue reading…"
-  },
-  "recentFeaturedPost": [
-    {
-      "id": "01",
-      "title": "Recent Post 1",
-      "date": "Nov 12",
-      "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      "image": "https://source.unsplash.com/random",
-      "imageText": "Image Text"
-    },
-    {
-      "id": "02",
-      "title": "Recent Post 2",
-      "date": "Nov 11",
-      "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      "image": "https://source.unsplash.com/random",
-      "imageText": "Image Text"
-    }
-  ],
-  "popuarFeaturedPost": [
-    {
-      "id": "01",
-      "title": "Popular Post 1",
-      "date": "Nov 12",
-      "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      "image": "https://source.unsplash.com/random",
-      "imageText": "Image Text"
-    },
-    {
-      "id": "02",
-      "title": "Popular Post 2",
-      "date": "Nov 11",
-      "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      "image": "https://source.unsplash.com/random",
-      "imageText": "Image Text"
-    }
-  ]
+    "recentFeaturedPost": [
+        {
+            "id": "01",
+            "title": "Recent Post 1",
+            "date": "Nov 12",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+            "image": "https://source.unsplash.com/random",
+            "imageText": "Image Text"
+        },
+        {
+            "id": "02",
+            "title": "Recent Post 2",
+            "date": "Nov 11",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+            "image": "https://source.unsplash.com/random",
+            "imageText": "Image Text"
+        }
+    ],
+    "popuarFeaturedPost": [
+        {
+            "id": "01",
+            "title": "Popular Post 1",
+            "date": "Nov 12",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+            "image": "https://source.unsplash.com/random",
+            "imageText": "Image Text"
+        },
+        {
+            "id": "02",
+            "title": "Popular Post 2",
+            "date": "Nov 11",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+            "image": "https://source.unsplash.com/random",
+            "imageText": "Image Text"
+        }
+    ]
 }
