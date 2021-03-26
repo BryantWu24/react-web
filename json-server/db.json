@@ -5,21 +5,6 @@
                 "id": 1,
                 "account": "admin",
                 "password": "111111"
-            },
-            {
-                "id": 2,
-                "account": "admin1",
-                "password": "111111"
-            },
-            {
-                "id": 3,
-                "account": "admin2",
-                "password": "111111"
-            },
-            {
-                "id": 4,
-                "account": "admin3",
-                "password": "111111"
             }
         ]
     },
@@ -30,10 +15,10 @@
         "imgText": "main image description",
         "linkText": "Continue reading…"
     },
-    "featuredPost": [
+    "recentFeaturedPost": [
         {
             "id": "01",
-            "title": "Featured post",
+            "title": "Recent Post 1",
             "date": "Nov 12",
             "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
             "image": "https://source.unsplash.com/random",
@@ -41,23 +26,25 @@
         },
         {
             "id": "02",
-            "title": "Post title",
+            "title": "Recent Post 2",
             "date": "Nov 11",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+            "image": "https://source.unsplash.com/random",
+            "imageText": "Image Text"
+        }
+    ],
+    "popuarFeaturedPost": [
+        {
+            "id": "01",
+            "title": "Popular Post 1",
+            "date": "Nov 12",
             "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
             "image": "https://source.unsplash.com/random",
             "imageText": "Image Text"
         },
         {
-            "id": "03",
-            "title": "Post title2",
-            "date": "Nov 11",
-            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-            "image": "https://source.unsplash.com/random",
-            "imageText": "Image Text"
-        },
-        {
-            "id": "04",
-            "title": "Post title3",
+            "id": "02",
+            "title": "Popular Post 2",
             "date": "Nov 11",
             "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
             "image": "https://source.unsplash.com/random",

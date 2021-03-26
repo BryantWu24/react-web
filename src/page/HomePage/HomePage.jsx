@@ -9,6 +9,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
 import Main from './Main'
 import Sidebar from './Sidebar'
 import Footer from './Footer'
@@ -27,22 +28,8 @@ class HomePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            md: [],
+            mainArticle: [],
             mainFeaturedPost: {},
-            featuredPost: [{
-                "title": "Loading...",
-                "date": "",
-                "description": "",
-                "image": "",
-                "imageText": ""
-            },
-            {
-                "title": "Loading....",
-                "date": "",
-                "description": "",
-                "image": "",
-                "imageText": ""
-            }]
         }
     }
 
@@ -50,26 +37,13 @@ class HomePage extends Component {
         fetch(post1)
             .then((res) => res.text())
             .then((md) => {
-                let mdAry = this.state.md;
+                let mdAry = this.state.mainArticle;
                 mdAry.push(md)
-                this.setState({ md: mdAry })
-            });
-        fetch(post2)
-            .then((res) => res.text())
-            .then((md) => {
-                let mdAry = this.state.md;
-                mdAry.push(md)
-                this.setState({ md: mdAry })
-            });
-        fetch(post3)
-            .then((res) => res.text())
-            .then((md) => {
-                let mdAry = this.state.md;
-                mdAry.push(md)
-                this.setState({ md: mdAry })
+                this.setState({ mainArticle: mdAry })
             });
         this.getMainFeaturedPost();
-        this.getFeaturedPost();
+        this.getRecentFeaturedPost();
+        this.getPopuarFeaturedPost();
     }
 
     getMainFeaturedPost = async () => {
@@ -78,16 +52,25 @@ class HomePage extends Component {
             this.setState({ mainFeaturedPost: Data.data })
         }
         catch (error) {
-            alert("GET Error!!");
+            alert("mainFeaturedPost API Error.");
         }
     };
 
-    getFeaturedPost = async () => {
+    getRecentFeaturedPost = async () => {
         try {
-            const Data = await axios.get("/featuredPost");
-            this.setState({ featuredPost: Data.data })
+            const Data = await axios.get("/recentFeaturedPost");
+            this.setState({ recentFeaturedPost: Data.data })
         } catch (error) {
-            alert("error", error);
+            alert("recentFeaturedPost API Error.");
+        }
+    }
+
+    getPopuarFeaturedPost = async () => {
+        try {
+            const Data = await axios.get("/popuarFeaturedPost");
+            this.setState({ popuarFeaturedPost: Data.data })
+        } catch (error) {
+            alert("popuarFeaturedPost API Error.");
         }
     }
 
@@ -130,20 +113,43 @@ class HomePage extends Component {
                 <CssBaseline />
                 <Container maxWidth="lg">
                     <Header title="Blog" sections={sections} />
-
                     <main>
                         <MainFeaturedPost post={this.state.mainFeaturedPost} />
+
+                        <Typography variant="h6" gutterBottom className={classes.mainGrid}>
+                            Popular Post
+                        </Typography>
                         <Grid container spacing={4}>
                             {
-                                this.state.featuredPost.map((post) => (
-                                    <FeaturedPost key={post.title} post={post} />
-                                ))
+                                (this.state.popuarFeaturedPost)
+                                    ?
+                                    this.state.popuarFeaturedPost.map((post) => (
+                                        <FeaturedPost key={post.title} post={post} />
+                                    ))
+                                    :
+                                    <div></div>
                             }
                         </Grid>
+
+                        <Typography variant="h6" gutterBottom className={classes.mainGrid}>
+                            Recent Post
+                        </Typography>
+                        <Grid container spacing={4}>
+                            {
+                                (this.state.recentFeaturedPost)
+                                    ?
+                                    this.state.recentFeaturedPost.map((post) => (
+                                        <FeaturedPost key={post.title} post={post} />
+                                    ))
+                                    :
+                                    <div></div>
+                            }
+                        </Grid>
+
                         <Grid container spacing={5} className={classes.mainGrid}>
                             {
-                                (this.state.md.length > 0) ?
-                                    <Main title="From the firehose" posts={this.state.md} />
+                                (this.state.mainArticle.length > 0) ?
+                                    <Main title="Lastest Realse" posts={this.state.mainArticle} />
                                     : ''
                             }
                             <Sidebar

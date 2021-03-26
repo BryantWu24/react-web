@@ -27,7 +27,7 @@ class FeaturedPost extends Component {
             <Grid item xs={12} md={6}>
                 <CardActionArea component="a" href="#">
                     {
-                        (post.id)
+                        (post)
                             ?
                             <Card className={classes.card}>
                                 <div className={classes.cardDetails}>
@@ -55,13 +55,7 @@ class FeaturedPost extends Component {
                                 <div className={classes.cardDetails} style={{ height: '180px' }}>
                                     <CardContent>
                                         <Typography component="h2" variant="h5">
-                                            {post.title}
-                                        </Typography>
-                                        <Typography variant="subtitle1" color="textSecondary">
-                                            {post.date}
-                                        </Typography>
-                                        <Typography variant="subtitle1" paragraph>
-                                            {post.description}
+                                            Loading...
                                         </Typography>
                                     </CardContent>
                                 </div>
