@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -13,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import axios from '../../core/axios';
 
 const styles = (theme) => ({
     root: {
@@ -76,20 +76,41 @@ class SignBoard extends Component {
         console.log(this.state)
     }
 
-    signUp = () => {
+    signUp = async () => {
         const { account, password, userName, email } = this.state
-        if (account && password && userName && email)
-            alert('do Sign Up API.')
+        if (account && password && userName && email) {
+            const Data = await axios.post("/user",
+                {
+                    "account": account,
+                    "password": password,
+                    "name": userName,
+                    "email": email
+                });
+            alert(Data.data);
+        }
+
+
         else
             alert('Fail Sign Up.')
     }
 
-    signIn = () => {
+    signIn = async () => {
         const { account, password } = this.state
-        if (account && password)
-            alert('do Sign In API.')
-        else
-            alert('Fail Sign In.')
+
+        try {
+            if (account && password) {
+                const Data = await axios.get("/user?account=" + account + "&password=" + password);
+                if (Data.data.length === 0)
+                    alert('SignIn Fail.');
+                else
+                    alert('SignIn Success.');
+            }
+            else
+                alert('AC/PWD is Required')
+        }
+        catch (error) {
+            alert("mainFeaturedPost API Error.");
+        }
     }
 
     render() {
