@@ -1,5 +1,5 @@
 # <span style="color:gold"> react-router-dom </span>
-
+[教學網站](https://ithelp.ithome.com.tw/articles/10243368?sc=iThomeR)
 - 路由機制
 
 ## 安裝 React-router-dom
@@ -7,6 +7,38 @@
 ```json
 npm install react-router-dom
 ```
+## 引用
+
+1. index.js 引入
+``` jsx
+import {BrowserRouter} from 'react-router-dom';
+
+ReactDOM.render(
+    <BrowserRouter>
+            <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+);
+```
+
+2. App.jsx 建立路由
+``` jsx
+import HomePage from "./page/HomePage/HomePage";
+import BackendPage from "./page/Backend/Backend";
+import { Route,Switch } from 'react-router-dom';
+
+function App() {
+    return (
+        <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/backend" component={BackendPage} />
+        </Switch>
+    );
+}
+
+export default App;
+```
+
 
 <br>
 
