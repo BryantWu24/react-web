@@ -90,7 +90,8 @@ class SignBoard extends Component {
                     "account": signUp_account,
                     "password": signUp_password,
                     "name": signUp_userName,
-                    "email": signUp_email
+                    "email": signUp_email,
+                    "userIcon": "https://source.unsplash.com/random"
                 });
             if (Data.data.length === 0)
                 alert('SignUp Fail.');
@@ -121,8 +122,8 @@ class SignBoard extends Component {
                         signIn_account: '',
                         signIn_password: '',
                     });
-
-                    alert('SignIn Success.');
+                    this.props.getSignStatus(true);
+                    this.props.getUserInfo(Data.data);
                 }
             }
             else

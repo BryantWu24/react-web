@@ -76,7 +76,7 @@ class HomePage extends Component {
 
     render() {
         const sections = [
-            { title: 'Technology', url: '#' },
+            { title: 'Backend', url: '/backend' },
             { title: 'Design', url: '#' },
             { title: 'Culture', url: '#' },
             { title: 'Business', url: '#' },

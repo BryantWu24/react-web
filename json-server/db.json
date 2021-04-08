@@ -5,35 +5,16 @@
             "account": "admin",
             "password": "111111",
             "name": "Bryant",
-            "email": "a@A.com"
+            "email": "a@A.com",
+            "userIcon": "https://source.unsplash.com/random"
         },
         {
             "id": 2,
             "account": "admin2",
             "password": "111111",
             "name": "Bryant2",
-            "email": "a@A.com2"
-        },
-        {
-            "id": 5,
-            "account": "admin5",
-            "password": "111111",
-            "name": "Bryant5",
-            "email": "a@A.com"
-        },
-        {
-            "account": "admin6",
-            "password": "111111",
-            "name": "Bryant6",
-            "email": "a@A.com",
-            "id": 6
-        },
-        {
-            "account": "aa",
-            "password": "aa",
-            "name": "TEST",
-            "email": "aa@aa",
-            "id": 7
+            "email": "a@A.com2",
+            "userIcon": "https://source.unsplash.com/random"
         }
     ],
     "mainFeaturedPost": {
