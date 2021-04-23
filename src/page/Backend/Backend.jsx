@@ -23,6 +23,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import HomeIcon from '@material-ui/icons/Home';
 import Dashboard from './Dashboard/Dashboard';
 import ArticleList from './Article/ArticleList';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
 
 const drawerWidth = 240;
 const styles = (theme) => ({
@@ -32,14 +33,25 @@ const styles = (theme) => ({
     toolbar: {
         paddingRight: 24, // keep right padding when drawer closed
     },
-    toolbarIcon: {
+    drawerHeader: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         padding: '0 8px',
         ...theme.mixins.toolbar,
     },
+
+    drawerHeaderDiv: {
+        width: '200px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+    },
+
     appBar: {
+        background: 'black',
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
@@ -64,6 +76,8 @@ const styles = (theme) => ({
         flexGrow: 1,
     },
     drawerPaper: {
+        background: '#505251',
+        color: 'white',
         position: 'relative',
         whiteSpace: 'nowrap',
         width: drawerWidth,
@@ -85,7 +99,7 @@ const styles = (theme) => ({
     },
     appBarSpacer: theme.mixins.toolbar,
     content: {
-        flexGrow: 1,
+        // flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
     },
@@ -103,6 +117,10 @@ const styles = (theme) => ({
     fixedHeight: {
         height: 240,
     },
+    listItemIcon: {
+        color: 'red',
+        background: 'red'
+    }
 });
 class Backend extends Component {
 
@@ -149,7 +167,7 @@ class Backend extends Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                            Dashboard
+                            {this.state.currenPage}
                         </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
@@ -170,18 +188,23 @@ class Backend extends Component {
                     }}
                     open={this.state.open}
                 >
-                    <div className={classes.toolbarIcon}>
+
+                    <div className={classes.drawerHeader}>
+                        <div className={classes.drawerHeaderDiv}>
+                            <AcUnitIcon />
+                        Bryant Blog
+                        </div>
                         <IconButton onClick={this.handleDrawerClose}>
                             <ChevronLeftIcon />
                         </IconButton>
                     </div>
                     <Divider />
                     <List>
-                        <ListSubheader inset>Backend</ListSubheader>
+                        <ListSubheader inset style={{ color: 'white' }}>Backend</ListSubheader>
                         {
                             mainListItems.map((item, index) =>
                             (<ListItem button key={index} onClick={() => { this.clickListItem(item.primary) }}>
-                                <ListItemIcon>
+                                <ListItemIcon >
                                     {item.icon}
                                 </ListItemIcon>
                                 <ListItemText primary={item.primary} />
