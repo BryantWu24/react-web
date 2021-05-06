@@ -102,6 +102,7 @@ const styles = (theme) => ({
         // flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
+        width: '100%',
     },
     container: {
         paddingTop: theme.spacing(2),
