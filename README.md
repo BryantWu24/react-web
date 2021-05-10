@@ -1,3 +1,12 @@
+# <span style="color:green"> Git Format </span>
+- 樣式 ： 調整 CSS / 版面位置等相關操作
+- 安裝 ： 套件新增
+- 組件 ： 新增組件
+- 更新 ： 異動調整，無新增功能
+- 功能 ： 新增功能
+
+<br>
+
 # <span style="color:gold"> react-router-dom </span>
 [教學網站](https://ithelp.ithome.com.tw/articles/10243368?sc=iThomeR)
 - 路由機制
@@ -31,7 +40,7 @@ function App() {
     return (
         <Switch>
             <Route path="/" exact component={HomePage} />
-            <Route path="/backend" component={BackendPage} />
+            <Route path="****/backend" component={BackendPage} />
         </Switch>
     );
 }
@@ -111,6 +120,15 @@ Material-UI 有使用 Roboto 字體，因此，官方建議載入此字體
 ### 使用 npm 安裝 material-ui
 ```
 npm install @material-ui/icons
+```
+
+<br>
+
+# <span style="color:gold"> Data-Grid </span>
+
+## 安裝 Data-Grid
+```
+npm install @material-ui/data-grid
 ```
 
 ---

@@ -1,25 +1,34 @@
 import React, { Component } from 'react'
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import SaveIcon from '@material-ui/icons/Save';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import { withStyles } from '@material-ui/core/styles';
+import { DataGrid } from '@material-ui/data-grid';
+import axios from '../../../core/axios';
 
 const styles = (theme) => ({
     root: {
         flexGrow: 1,
     },
-    select: {
-        paddingTop: '1rem',
-        width: '100%'
-
+    button: {
+        margin: '1rem',
     },
-
+    title: {
+        fontSize: '2rem',
+        fontWeight: 'bold'
+    },
+    header: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        width: '100%'
+    },
+    dataGridDiv: {
+        height: '80vh',
+        width: '100%'
+    }
 });
 class ArticleList extends Component {
     constructor(props) {
@@ -28,122 +37,119 @@ class ArticleList extends Component {
             status: false,
             title: '',
             category: 'eat',
-            content: ''
+            content: '',
+            dataGridColumns: [],
+            dataGridRows: [],
+            selection: [],
         }
     }
+
+    getArticleList = async () => {
+        const Data = await axios.get("/articlelist",);
+        if (Data.data) {
+
+            if (Data.data.columns) {
+                this.setState({
+                    dataGridColumns: Data.data.columns
+                });
+            }
+
+            if (Data.data.data && Data.data.data.length > 0) {
+                let rows = []
+                Data.data.data.forEach((item, index) => {
+                    rows.push({
+                        id: item.id,
+                        number: index,
+                        name: item.name,
+                        status: item.status,
+                        viewCount: item.viewCount,
+                        likeCount: item.likeCount,
+                        category: item.category
+                    })
+                })
+                this.setState({
+                    dataGridRows: rows
+                })
+            }
+        } else {
+            alert('articlelist API ERROR');
+        }
+    }
+
+    componentDidMount = () => {
+        this.getArticleList();
+    }
+
     render() {
         const { classes } = this.props;
-        const categoryAry = [{
-            name: '興趣',
-            value: 'interest'
-        }, {
-            name: '美食',
-            value: 'eatting'
-        }, {
-            name: '購物',
-            value: 'shopping'
-        }, {
-            name: '住所',
-            value: 'lodging'
-        }, {
-            name: '交通',
-            value: 'traffic'
-        }];
-        const handleCategoryChange = (event) => {
-            this.setState({ category: event.target.value });
-        };
-
-        const onSave = () => {
-            console.log('this.state', this.state);
+        const onCreate = () => {
+            console.log('CREATE:', this.state.selection);
         }
+        const onEdit = () => {
+            console.log('EDIT', this.state.selection);
+        }
+        const onDelete = () => {
+            console.log('DELETE', this.state.selection);
+        }
+        const onSelectionModelChange = (newSelection) => {
+            console.log('new:', newSelection)
+            this.setState({
+                selection: newSelection
+            })
+        }
+
         return (
             <div >
-                ArticleList
                 <Grid container spacing={3}>
-                    <Grid item xs={8} md={8} xl={10}>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="title"
-                            label="標題"
-                            name="title"
-                            autoComplete="title"
-                            autoFocus
-                            value={this.state.title}
-                            onChange={event => this.setState({ title: event.target.value })}
-                        />
+                    <Grid item xs={12} md={7} >
+                        <div className={classes.title}>
+                            Article List
+                            </div>
                     </Grid>
-                    <Grid item xs={4} md={4} xl={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={this.state.status}
-                                    onChange={event => this.setState({ status: !this.state.status })}
-                                    name="status"
-                                    color="primary"
-                                />
-                            }
-                            label="發布狀態"
-                            labelPlacement="top"
-                        />
-                    </Grid>
-
-                    <Grid item xs={12} md={6} xl={6}>
-                        <FormControl variant="outlined" className={classes.select} >
-                            <InputLabel className={classes.select} htmlFor="outlined-category">類別</InputLabel>
-                            <Select
-                                native
-                                value={this.state.category}
-                                onChange={handleCategoryChange}
-                                label="類別"
-                                inputProps={{
-                                    name: 'category',
-                                    id: 'outlined-category',
-                                }}
+                    <Grid item xs={12} md={5}>
+                        <div className={classes.header}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                className={classes.button}
+                                startIcon={<DeleteOutlineIcon />}
+                                onClick={onDelete}
                             >
-                                {
-                                    categoryAry.map((item, index) => {
-                                        return (<option key={index} value={item.value}>{item.name}</option>)
-                                    })
-                                }
-                            </Select>
-                        </FormControl>
+                                Delete
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                className={classes.button}
+                                startIcon={<EditIcon />}
+                                onClick={onEdit}
+                            >
+                                Edit
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                className={classes.button}
+                                startIcon={<PostAddIcon />}
+                                onClick={onCreate}
+                            >
+                                Create
+                            </Button>
+                        </div>
                     </Grid>
-                    <Grid item xs={12} md={6} xl={6}>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="content"
-                            label="內文"
-                            name="content"
-                            autoComplete="content"
-                            autoFocus
-                            multiline
-                            rows={6}
-                            value={this.state.content}
-                            onChange={event => this.setState({ content: event.target.value })}
-                        />
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <Grid item xs={12} md={6} xl={4}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            className={classes.button}
-                            startIcon={<SaveIcon />}
-                            onClick={onSave}
-                        >
-                            Save
-                    </Button>
+                    <Grid item xs={12}>
+                        <div className={classes.dataGridDiv}>
+                            <DataGrid rows={this.state.dataGridRows}
+                                columns={this.state.dataGridColumns}
+                                checkboxSelection
+                                onSelectionModelChange={onSelectionModelChange}
+                                selectionModel={this.stateselection} />
+                        </div>
                     </Grid>
                 </Grid>
-
             </div>
         )
     }
