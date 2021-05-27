@@ -114,17 +114,53 @@ class SignBoard extends Component {
 
         try {
             if (signIn_account && signIn_password) {
-                const Data = await axios.get("/user?account=" + signIn_account + "&password=" + signIn_password);
-                if (Data.data.length === 0)
-                    alert('SignIn Fail.');
-                else {
+
+                const data = [
+                    {
+                        "id": 1,
+                        "account": "admin",
+                        "password": "111111",
+                        "name": "Bryant",
+                        "email": "a@A.com",
+                        "userIcon": "https://source.unsplash.com/random"
+                    },
+                    {
+                        "id": 2,
+                        "account": "admin2",
+                        "password": "111111",
+                        "name": "Bryant2",
+                        "email": "a@A.com2",
+                        "userIcon": "https://source.unsplash.com/random"
+                    },
+                    {
+                        "account": "123",
+                        "password": "123",
+                        "name": "123",
+                        "email": "123@123",
+                        "userIcon": "https://source.unsplash.com/random",
+                        "id": 3
+                    }
+                ]
+
+                data.forEach((item)=>{
                     this.setState({
                         signIn_account: '',
                         signIn_password: '',
                     });
                     this.props.getSignStatus(true);
-                    this.props.getUserInfo(Data.data);
-                }
+                    this.props.getUserInfo(data);
+                })
+                // const Data = await axios.get("/user?account=" + signIn_account + "&password=" + signIn_password);
+                // if (Data.data.length === 0)
+                //     alert('SignIn Fail.');
+                // else {
+                //     this.setState({
+                //         signIn_account: '',
+                //         signIn_password: '',
+                //     });
+                //     this.props.getSignStatus(true);
+                //     this.props.getUserInfo(Data.data);
+                // }
             }
             else
                 alert('AC/PWD is Required')

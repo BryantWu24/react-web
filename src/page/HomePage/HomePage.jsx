@@ -46,7 +46,16 @@ class HomePage extends Component {
 
     getMainFeaturedPost = async () => {
         try {
-            const Data = await axios.get("/mainFeaturedPost");
+            // const Data = await axios.get("/mainFeaturedPost");
+            const Data = {
+                data: {
+                    "title": "Hello World",
+                    "description": "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+                    "image": "https://source.unsplash.com/random",
+                    "imgText": "main image description",
+                    "linkText": "Continue reading…"
+                }
+            }
             this.setState({ mainFeaturedPost: Data.data })
         }
         catch (error) {
@@ -56,7 +65,27 @@ class HomePage extends Component {
 
     getRecentFeaturedPost = async () => {
         try {
-            const Data = await axios.get("/recentFeaturedPost");
+            // const Data = await axios.get("/recentFeaturedPost");
+            const Data = {
+                data: [
+                    {
+                        "id": "01",
+                        "title": "Recent Post 1",
+                        "date": "Nov 12",
+                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                        "image": "https://source.unsplash.com/random",
+                        "imageText": "Image Text"
+                    },
+                    {
+                        "id": "02",
+                        "title": "Recent Post 2",
+                        "date": "Nov 11",
+                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                        "image": "https://source.unsplash.com/random",
+                        "imageText": "Image Text"
+                    }
+                ]
+            }
             this.setState({ recentFeaturedPost: Data.data })
         } catch (error) {
             alert("recentFeaturedPost API Error.");
@@ -65,7 +94,27 @@ class HomePage extends Component {
 
     getPopuarFeaturedPost = async () => {
         try {
-            const Data = await axios.get("/popuarFeaturedPost");
+            // const Data = await axios.get("/popuarFeaturedPost");
+            const Data = {
+                data: [
+                    {
+                        "id": "01",
+                        "title": "Popular Post 1",
+                        "date": "Nov 12",
+                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                        "image": "https://source.unsplash.com/random",
+                        "imageText": "Image Text"
+                    },
+                    {
+                        "id": "02",
+                        "title": "Popular Post 2",
+                        "date": "Nov 11",
+                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                        "image": "https://source.unsplash.com/random",
+                        "imageText": "Image Text"
+                    }
+                ]
+            }
             this.setState({ popuarFeaturedPost: Data.data })
         } catch (error) {
             alert("popuarFeaturedPost API Error.");
