@@ -28,6 +28,7 @@ class HomePage extends Component {
         this.state = {
             mainArticle: [],
             mainFeaturedPost: {},
+            env: (!!sessionStorage.getItem('hardcode') && sessionStorage.getItem('hardcode') === 'true') ? 'hardcode' : 'mock'
         }
     }
 
@@ -46,17 +47,20 @@ class HomePage extends Component {
 
     getMainFeaturedPost = async () => {
         try {
-            // const Data = await axios.get("/mainFeaturedPost");
-            const Data = {
-                data: {
-                    "title": "Hello World",
-                    "description": "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-                    "image": "https://source.unsplash.com/random",
-                    "imgText": "main image description",
-                    "linkText": "Continue reading…"
+            let Data;
+            if (this.state.env === 'hardcode') {
+                Data = {
+                    data: {
+                        "title": "HardCode Hello World",
+                        "description": "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+                        "image": "https://source.unsplash.com/random",
+                        "imgText": "main image description",
+                        "linkText": "Continue reading…"
+                    }
                 }
-            }
-            this.setState({ mainFeaturedPost: Data.data })
+            } else
+                Data = await axios.get("/mainFeaturedPost");
+            if (!!Data) this.setState({ mainFeaturedPost: Data.data })
         }
         catch (error) {
             alert("mainFeaturedPost API Error.");
@@ -65,28 +69,31 @@ class HomePage extends Component {
 
     getRecentFeaturedPost = async () => {
         try {
-            // const Data = await axios.get("/recentFeaturedPost");
-            const Data = {
-                data: [
-                    {
-                        "id": "01",
-                        "title": "Recent Post 1",
-                        "date": "Nov 12",
-                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-                        "image": "https://source.unsplash.com/random",
-                        "imageText": "Image Text"
-                    },
-                    {
-                        "id": "02",
-                        "title": "Recent Post 2",
-                        "date": "Nov 11",
-                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-                        "image": "https://source.unsplash.com/random",
-                        "imageText": "Image Text"
-                    }
-                ]
-            }
-            this.setState({ recentFeaturedPost: Data.data })
+            let Data;
+            if (this.state.env === 'hardcode') {
+                Data = {
+                    data: [
+                        {
+                            "id": "01",
+                            "title": "HardCode Recent Post 1",
+                            "date": "Nov 12",
+                            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                            "image": "https://source.unsplash.com/random",
+                            "imageText": "Image Text"
+                        },
+                        {
+                            "id": "02",
+                            "title": "HardCode Recent Post 2",
+                            "date": "Nov 11",
+                            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                            "image": "https://source.unsplash.com/random",
+                            "imageText": "Image Text"
+                        }
+                    ]
+                }
+            } else
+                Data = await axios.get("/recentFeaturedPost");
+            if (!!Data) this.setState({ recentFeaturedPost: Data.data })
         } catch (error) {
             alert("recentFeaturedPost API Error.");
         }
@@ -94,28 +101,31 @@ class HomePage extends Component {
 
     getPopuarFeaturedPost = async () => {
         try {
-            // const Data = await axios.get("/popuarFeaturedPost");
-            const Data = {
-                data: [
-                    {
-                        "id": "01",
-                        "title": "Popular Post 1",
-                        "date": "Nov 12",
-                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-                        "image": "https://source.unsplash.com/random",
-                        "imageText": "Image Text"
-                    },
-                    {
-                        "id": "02",
-                        "title": "Popular Post 2",
-                        "date": "Nov 11",
-                        "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
-                        "image": "https://source.unsplash.com/random",
-                        "imageText": "Image Text"
-                    }
-                ]
-            }
-            this.setState({ popuarFeaturedPost: Data.data })
+            let Data;
+            if (this.state.env === 'hardcode') {
+                Data = {
+                    data: [
+                        {
+                            "id": "01",
+                            "title": "HardCode Popular Post 1",
+                            "date": "Nov 12",
+                            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                            "image": "https://source.unsplash.com/random",
+                            "imageText": "Image Text"
+                        },
+                        {
+                            "id": "02",
+                            "title": "HardCode  Popular Post 2",
+                            "date": "Nov 11",
+                            "description": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+                            "image": "https://source.unsplash.com/random",
+                            "imageText": "Image Text"
+                        }
+                    ]
+                }
+            } else
+                Data = await axios.get("/popuarFeaturedPost");
+            if (!!Data) this.setState({ popuarFeaturedPost: Data.data })
         } catch (error) {
             alert("popuarFeaturedPost API Error.");
         }

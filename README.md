@@ -5,8 +5,11 @@
 - 更新 ： 異動調整，無新增功能
 - 功能 ： 新增功能
 
-<br>
+# <span style="color:green"> HardCode / Mock 模式 </span>
+- SessionStorage 設定為 hadrcode : true 則會抓取程式碼內的資料；其餘則使用 Josn-Server 資料
 
+<br>
+# <span style="color:green"> 套件安裝 </span>
 # <span style="color:gold"> react-router-dom </span>
 [教學網站](https://ithelp.ithome.com.tw/articles/10243368?sc=iThomeR)
 - 路由機制

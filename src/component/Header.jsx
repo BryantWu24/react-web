@@ -55,8 +55,8 @@ class Header extends Component {
         this.state = {
             open: false,
             signType: "signIn",
-            isLogin: false,
-            userInfo: []
+            isLogin: (!!sessionStorage.getItem('userInfo')) ? true : false,
+            userInfo: (!!sessionStorage.getItem('userInfo')) ? JSON.parse(sessionStorage.getItem('userInfo')) : []
         }
     }
 
@@ -138,10 +138,10 @@ class Header extends Component {
                             <div>
                                 <Button variant="outlined" size="small" color="inherit" onClick={this.signUp}>
                                     Sign up
-                            </Button>
+                                </Button>
                                 <Button variant="outlined" size="small" color="inherit" onClick={this.signIn}>
                                     Sign in
-                            </Button>
+                                </Button>
                             </div>
                     }
                 </Toolbar>

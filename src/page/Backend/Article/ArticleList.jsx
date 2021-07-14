@@ -41,91 +41,95 @@ class ArticleList extends Component {
             dataGridColumns: [],
             dataGridRows: [],
             selection: [],
+            env: (!!sessionStorage.getItem('hardcode') && sessionStorage.getItem('hardcode') === 'true') ? 'hardcode' : 'mock'
         }
     }
 
     getArticleList = async () => {
-        // const Data = await axios.get("/articlelist");
-        const Data= {
-            data: {
-                "columns": [
-                    {
-                        "field": "number",
-                        "headerName": "編號",
-                        "width": 80
-                    },
-                    {
-                        "field": "name",
-                        "headerName": "文章名稱",
-                        "width": 200
-                    },
-                    {
-                        "field": "status",
-                        "headerName": "已發布",
-                        "width": 100
-                    },
-                    {
-                        "field": "category",
-                        "headerName": "類別",
-                        "width": 100
-                    },
-                    {
-                        "field": "viewCount",
-                        "headerName": "查看人數",
-                        "width": 100
-                    },
-                    {
-                        "field": "likeCount",
-                        "headerName": "喜歡人數",
-                        "width": 100
-                    }
-                ],
-                "data": [
-                    {
-                        "id": "article-000001",
-                        "name": "文章名稱",
-                        "status": "已發布",
-                        "viewCount": "1909",
-                        "likeCount": "200",
-                        "category": "eating"
-                    },
-                    {
-                        "id": "article-000002",
-                        "name": "文章名稱2",
-                        "status": "已發布",
-                        "viewCount": "1909",
-                        "likeCount": "200",
-                        "category": "eating"
-                    },
-                    {
-                        "id": "article-000003",
-                        "name": "文章名稱",
-                        "status": "已發布",
-                        "viewCount": "1909",
-                        "likeCount": "200",
-                        "category": "eating"
-                    },
-                    {
-                        "id": "article-000004",
-                        "name": "文章名稱",
-                        "status": "已發布",
-                        "viewCount": "1909",
-                        "likeCount": "200",
-                        "category": "eating"
-                    },
-                    {
-                        "id": "article-000005",
-                        "name": "文章名稱",
-                        "status": "未發發布",
-                        "viewCount": "1909",
-                        "likeCount": "200",
-                        "category": "eating"
-                    }
-                ]
+        let Data;
+        if (this.state.env === 'hardcode') {
+            Data = {
+                data: {
+                    "columns": [
+                        {
+                            "field": "number",
+                            "headerName": "編號",
+                            "width": 80
+                        },
+                        {
+                            "field": "name",
+                            "headerName": "文章名稱",
+                            "width": 200
+                        },
+                        {
+                            "field": "status",
+                            "headerName": "已發布",
+                            "width": 100
+                        },
+                        {
+                            "field": "category",
+                            "headerName": "類別",
+                            "width": 100
+                        },
+                        {
+                            "field": "viewCount",
+                            "headerName": "查看人數",
+                            "width": 100
+                        },
+                        {
+                            "field": "likeCount",
+                            "headerName": "喜歡人數",
+                            "width": 100
+                        }
+                    ],
+                    "data": [
+                        {
+                            "id": "article-000001",
+                            "name": "Demo文章名稱",
+                            "status": "已發布",
+                            "viewCount": "1909",
+                            "likeCount": "200",
+                            "category": "eating"
+                        },
+                        {
+                            "id": "article-000002",
+                            "name": "Demo文章名稱2",
+                            "status": "已發布",
+                            "viewCount": "1909",
+                            "likeCount": "200",
+                            "category": "eating"
+                        },
+                        {
+                            "id": "article-000003",
+                            "name": "Demo文章名稱",
+                            "status": "已發布",
+                            "viewCount": "1909",
+                            "likeCount": "200",
+                            "category": "eating"
+                        },
+                        {
+                            "id": "article-000004",
+                            "name": "Demo文章名稱",
+                            "status": "已發布",
+                            "viewCount": "1909",
+                            "likeCount": "200",
+                            "category": "eating"
+                        },
+                        {
+                            "id": "article-000005",
+                            "name": "Demo文章名稱",
+                            "status": "未發發布",
+                            "viewCount": "1909",
+                            "likeCount": "200",
+                            "category": "eating"
+                        }
+                    ]
+                }
             }
-        }
-        if (Data.data) {
+        } else
+            Data = await axios.get("/articlelist");
 
+        if (Data.data) {
             if (Data.data.columns) {
                 this.setState({
                     dataGridColumns: Data.data.columns
@@ -182,7 +186,7 @@ class ArticleList extends Component {
                     <Grid item xs={12} md={7} >
                         <div className={classes.title}>
                             Article List
-                            </div>
+                        </div>
                     </Grid>
                     <Grid item xs={12} md={5}>
                         <div className={classes.header}>
